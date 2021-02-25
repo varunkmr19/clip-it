@@ -1,4 +1,6 @@
 env
 clipit/.env
 clipit/__pycache__
+core/__pycache__
 core/migrations
+db.sqlite3
