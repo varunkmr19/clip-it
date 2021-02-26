@@ -9,29 +9,10 @@ class IsOwner(permissions.BasePermission):
       def has_object_permission(self, request, view, obj):
           return obj.owner == request.user
 
-class TagList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-  queryset = Tag.objects.all()
-  serializer_class = TagSerializer
 
-  def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-  def post(self, request, *args, **kwargs):
-      return self.create(request, *args, **kwargs)
-
-
-class TagDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
-  queryset = Tag.objects.all()
-  serializer_class = TagSerializer
-
-  def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-  def put(self, request, *args, **kwargs):
-      return self.update(request, *args, **kwargs)
-
-  def delete(self, request, *args, **kwargs):
-      return self.destroy(request, *args, **kwargs)
+class TagViewSet(viewsets.ModelViewSet):
+      queryset = Tag.objects.all()
+      serializer_class = TagSerializer
 
 
 class CollectionViewSet(viewsets.ModelViewSet):
