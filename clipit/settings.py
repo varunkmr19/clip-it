@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'authentication',
     'corsheaders',
     'rest_framework',
-    'authentication'
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",  
-    ],                    
+    ],                  
 }
 
 ROOT_URLCONF = 'clipit.urls'
