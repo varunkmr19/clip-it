@@ -62,3 +62,26 @@ class BookmarkViewSet(viewsets.ModelViewSet):
 
             serializer = BookMarkSerializer(bookmark)
             return Response(serializer.data)
+
+      def update(self, request, *args, **kwargs):
+            bookmark_obj = self.get_object()
+            data = request.data
+
+            bookmark_obj.title = data['title']
+            bookmark_obj.url = data['url']
+            bookmark_obj.owner = request.user
+
+            bookmark_obj.tags.clear()
+            for tag in data['tags']:
+                  tag_obj = Tag.objects.get(name=tag['name'])
+                  bookmark_obj.tags.add(tag_obj)
+
+            bookmark_obj.collection.clear()
+            for collection in data["collection"]:
+                  collection_obj = Collection.objects.get(name=collection['name'])
+                  bookmark_obj.collection.add(collection_obj)
+
+            bookmark_obj.save()
+            serializer = BookMarkSerializer(bookmark_obj)
+
+            return Response(serializer.data)
