@@ -1,11 +1,7 @@
+import collections
 from django.db.models import fields
 from rest_framework import serializers
-from core.models import User, Tag, Collection, Bookmark
-
-class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = '__all__'
+from core.models import Tag, Collection, Bookmark
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -18,3 +14,11 @@ class CollectionSerializer(serializers.ModelSerializer):
   class Meta:
     model = Collection
     fields = ['name']
+
+
+class BookMarkSerializer(serializers.ModelSerializer):
+  tags = TagSerializer(many=True)
+  collection = CollectionSerializer(many=True)
+  class Meta:
+    model = Bookmark
+    fields = ['title', 'url', 'tags', 'collection']
