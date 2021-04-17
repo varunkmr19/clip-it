@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700&family=Raleway:wght@100;200;300;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'core/css/register.css' %}">
+
+    <title>Register</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <section id="image_container">
+            <header>
+                <div class="header_container">
+                    <p class="logo"><a href="{% url 'index' %}">Clip-It</a></p>
+
+                    <!-- <nav>
+                        <ul>
+                            <li><a href="#about_us">ABOUT US</a></li>
+                            <li><a href="#contact_us">CONTACT US</a></li>
+                            <li><button class="demo_user_button">DEMO USER</button></li>
+                        </ul>
+                    </nav> -->
+                </div>
+            </header>
+
+            <main class="login_section">
+                <section class="image_container">
+                    <div class="login_container">
+                        <h3 class="login_title">Register</h3>
+                        <form method="POST">
+                          {% csrf_token %}
+                            <div class="input_stream">
+                                <label>Email :
+                                </label>
+                                <input type="email" name="email" required>
+                            </div>
+
+                            <div class="input_stream">
+                                <label>Username :
+                                </label>
+                                <input type="text" name="username" required>
+                            </div>
+
+                            <div class="input_stream">
+                                <label>Password :
+                                </label>
+                                <input type="password" name="password" required>
+                            </div>
+
+                            <div class="input_stream">
+                                <label>Confirm Password :
+                                </label>
+                                <input type="password" name="confirm_password" required>
+                            </div>
+                            <button type="submit"
+                                class="register_button">Register</button>
+                        </form>
+
+                    </div>
+
+                </section>
+            </main>
+
+        </section>
+
+</body>
+
+</html>

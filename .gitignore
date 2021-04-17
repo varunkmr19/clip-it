@@ -1,10 +1,6 @@
 env
-clipit/.env
-clipit/__pycache__
-core/__pycache__
-core/migrations
-api/migrations
-api/__pycache__
-authentication/migrations
-authentication/__pycache__
-db.sqlite3
+*.pyc
+*.env
+
+*migrations
+*.dbsqlite3
