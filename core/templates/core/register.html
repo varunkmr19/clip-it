@@ -40,7 +40,7 @@
                 <section class="image_container">
                     <div class="login_container">
                         <h3 class="login_title">Register</h3>
-                        <form method="POST">
+                        <form method="POST" action="{% url 'register' %}">
                           {% csrf_token %}
                             <div class="input_stream">
                                 <label>Email :
