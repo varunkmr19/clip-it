@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700&family=Raleway:wght@100;200;300;500&display=swap"
+        rel="stylesheet">
+
+    <title>Clip-It</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <section id="image_container">
+            <header>
+                <div class="header_container">
+                    <p class="logo"><a href="#image_container">Clip-It</a></p>
+
+                    <nav>
+                        <ul>
+                            <li><a href="#about_us">ABOUT US</a></li>
+                            <li><a href="#contact_us">CONTACT US</a></li>
+                            <li><button class="demo_user_button">DEMO USER</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="login_section">
+                <section class="image_container">
+                    <div class="login_container">
+                        <h3 class="login_title">Sign In to <span id="app_logo_signin_header">Clip-It</span></h3>
+                        <form method="POST" action="{% url 'login' %}">
+                          {% csrf_token %}
+                            <div class="input_stream">
+                                <label>Username :
+                                </label>
+                                <input type="text" name="username" required>
+                            </div>
+
+                            <div class="input_stream">
+                                <label>Password :
+                                </label>
+                                <input type="password" name="password" required>
+                            </div>
+                            <button type="submit" class="login_button">Sign In</button>
+                        </form>
+                        <div class="signup_link">
+                            <h5><a href="{% url 'register' %}">Want to join the party?</a></h5>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+
+        </section>
+
+        <section id="about_us">
+            <div class="about_us_content">
+                <!-- <h2>About Us</h2> -->
+                <p class="para_1">After painfully using the chrome bookmarks utility option, we thought to ourselves,
+                </p>
+                <p class="para_2">&quot;Hey! Why not build a product which can help others keep
+                    their bookmarks healthy?&quot;</p>
+                <p class="para_3">Team Clip-It welcomes you to the world of optimized bookmarks!</p>
+            </div>
+
+            <div class="dev_team">
+                <div class="front_end">
+                    <h3>Gurkiran Gill</h3>
+                    <h4>Front-End Lead</h4>
+                </div>
+                <div class="api_front_end">
+                    <h3>Aditya Singh</h3>
+                    <h4>API/Front-End</h4>
+                </div>
+                <div class="back_end">
+                    <h3>Varun Kumar</h3>
+                    <h4>Back-End Lead</h4>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact_us">
+            <div class="contact_us_container">
+                <form>
+                    <div class="contact_us_input_stream_name contact_us_input_stream">
+                        <label>Name :</label>
+                        <input type="text" name="contact_us_name" required>
+                    </div>
+                    <div class="contact_us_input_stream_email contact_us_input_stream">
+                        <label>Email :</label>
+                        <input type="email" name="contact_us_email" required>
+                    </div>
+                    <div class="contact_us_input_stream_comment contact_us_input_stream">
+                        <input type="text" name="contact_us_comment" required>
+                    </div>
+                    <button type="submit" class="contact_us_submit_button">Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
