@@ -1,13 +1,266 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&family=Raleway:wght@500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+
+    <script src="https://kit.fontawesome.com/540bcb909b.js" crossorigin="anonymous"></script>
+
+    <title>Clip-It: App</title>
 </head>
+
 <body>
-  <h1>Index Page</h1>
-  <h2>User: {{ user }}</h2>
+    <!-- Root container : sidebar viewport + url viewport + shortcuts viewport -->
+    <div class="root_container">
+
+        <!-- Sidebar: Viewport for Collections + Tags + Menu -->
+        <section class="sidebar_container">
+
+            <!-- Collections: Section for Bookmark Folders -->
+            <section class="collections_container sidebar_item">
+
+                <div class="collections_header_container collections_item">
+
+                    <h3 class="collections_heading"><i class="far fa-folder folder_icon"></i>
+                        Collections
+                    </h3>
+
+                    <i class="fas fa-plus add_collections add" onclick="location.href='collections.html'"></i>
+
+                </div>
+
+                <div class=" collections_content_container collections_item">
+
+                    <div class="collection_01 collections_content_item">
+
+                        <a href="#">Social Media</a>
+                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
+                        <i class="far fa-trash-alt delete_collection_01 delete_collection delete"></i>
+
+                    </div>
+
+                    <div class="collection_02 collections_content_item">
+
+                        <a href="#">Podcasts</a>
+                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
+                        <i class="far fa-trash-alt delete_collection_02 delete_collection delete"></i>
+
+                    </div>
+
+                    <div class="collection_03 collections_content_item">
+
+                        <a href="#">Official</a>
+                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
+                        <i class="far fa-trash-alt delete_collection_03 delete_collection delete"></i>
+
+                    </div>
+
+                    <div class="collection_04 collections_content_item">
+
+                        <a href="#">Shopping</a>
+                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
+                        <i class="far fa-trash-alt delete_collection_04 delete_collection delete"></i>
+
+                    </div>
+
+                    <div class="collection_05 collections_content_item">
+
+                        <a href="#">Utilities</a>
+                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
+                        <i class="far fa-trash-alt delete_collection_05 delete_collection delete"></i>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Tags: Section for Bookmark Tags -->
+            <section class="tags_container sidebar_item">
+
+                <div class="tags_header_container tags_item">
+
+
+                    <h3 class="tags_heading"><i class="fas fa-tag tag_icon"></i>
+                        Tags</h3>
+                    <i class="fas fa-plus add_tags add" onclick=" location.href='tags.html'"></i>
+
+                </div>
+
+                <div class=" tags_content_container tags_item">
+
+                    <div class="tag_01 tags_content_item">
+
+                        <a href="#">#daily use</a>
+                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
+                        <i class="far fa-trash-alt delete_tag_01 delete_tag delete"></i>
+
+                    </div>
+
+                    <div class="tag_02 tags_content_item">
+
+                        <a href="#">#JRE</a>
+                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
+                        <i class="far fa-trash-alt delete_tag_02 delete_tag delete"></i>
+
+                    </div>
+
+                    <div class="tag_03 tags_content_item">
+
+                        <a href="#">#Google Util</a>
+                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
+                        <i class="far fa-trash-alt delete_tag_03 delete_tag delete"></i>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Menu: Sections for Profile + Upload + Sign Out -->
+            <section class="menu_container sidebar_item">
+
+                <!-- Profile: User Profile -->
+                <div class="menu_item">
+                    <i class="far fa-user-circle profile" onclick="location.href='profile.html'"></i>
+                </div>
+
+
+                <!-- Upload: Google Bookmarks File Upload  -->
+                <div class="menu_item">
+                    <i class="fas fa-upload upload" onclick="location.href='upload.html'"></i>
+                </div>
+
+                <!-- Sign Out: Sign Out button -->
+                <div class="menu_item">
+                    <i class="fas fa-sign-out-alt sign_out" onclick="location.href='{% url 'logout' %}'"></i>
+                </div>
+
+
+            </section>
+
+        </section>
+
+        <main class="url_container">
+
+            <section class="url_header_container url_item">
+
+                <h1>Google Util</h1>
+
+            </section>
+
+            <section class="url_content_container url_item">
+
+                <div class="url_01 url_content_item">
+
+                    <a href="#">Google Mail</a>
+                    <div class="url_content_item_editable">
+                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_url_01 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="url_02 url_content_item">
+
+                    <a href="#">Google Drive</a>
+                    <div class="url_content_item_editable">
+                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_url_02 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="url_03 url_content_item">
+
+                    <a href="#">Google Keep</a>
+                    <div class="url_content_item_editable">
+                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_url_03 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <i class="fas fa-plus add_url" onclick="location.href='urls.html'"></i>
+
+            </section>
+
+
+        </main>
+
+        <section class="shortcut_container">
+
+            <div class="shortcut_header_container shortcut_item">
+                <h2> <i class="fas fa-layer-group"></i> Shortcuts</h2>
+
+                <i class="fas fa-plus add_shortcut add" onclick="location.href='shortcuts.html'"></i>
+            </div>
+
+            <div class="shortcut_content_container shortcut_item">
+
+                <div class="shortcut_01 shortcut_content_item">
+
+                    <a href="#">YouTube</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_shortcut_01 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="shortcut_02 shortcut_content_item">
+
+                    <a href="#">CUIMS</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_shortcut_02 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="shortcut_03 shortcut_content_item">
+
+                    <a href="#">MDN</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_shortcut_03 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="shortcut_04 shortcut_content_item">
+
+                    <a href="#">Netflix</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_shortcut_04 delete_url delete"></i>
+                    </div>
+                </div>
+
+                <div class="shortcut_05 shortcut_content_item">
+
+                    <a href="#">Black Board</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
+                        <i class="far fa-trash-alt delete_shortcut_05 delete_url delete"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="logo">
+                <h3>Clip-It</h3>
+            </div>
+
+        </section>
+
+    </div>
+
 </body>
+
 </html>
