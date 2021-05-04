@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&family=Raleway:wght@300;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/540bcb909b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'core/css/collections.css' %}">
+
+    <title>Clip-It: Collections</title>
+</head>
+
+<body>
+
+    <!-- Root Container -->
+
+    <div class="root_container">
+
+        <!-- Header + Main + Footer -->
+
+        <!-- Header/Heading -->
+
+        <header class="root_container_item add_collection_page_header">
+
+            <h1 class="add_collection_page_heading"><i class="far fa-folder folder_icon"></i> Collections</h2>
+
+        </header>
+
+        <!-- Main/Content -->
+
+        <main class="root_container_item add_collection_page_content_container">
+            <form class="add_collection_page_content_item add_collection_form_container" action="{% url 'edit_collection' collection_id=collection.id %}" method="POST">
+              {% csrf_token %}
+
+                <div class="add_collection_form_item collection_entry_container">
+
+                    <label class="collection_entry_item collection_label">Collection Name :</label>
+
+                    <input class="collection_entry_item collection_input" type="text" name="collection" value="{{ collection.name }}" required>
+
+                </div>
+
+                <div class="return_home_container">
+
+                    <button type="submit" class="add_collection_form_content_item add_collection"><i
+                            class="fas fa-plus add_collections add"></i></button>
+
+                </div>
+
+            </form>
+
+
+            <div class="return_home_container">
+
+                <a href="{% url 'index' %}" class="add_collection_page_item return_home"><i
+                        class="fas fa-arrow-left return_home_icon return"></i> Back to
+                    party!</a>
+
+            </div>
+
+
+        </main>
+
+        <!-- Footer/Logo -->
+
+        <footer class="root_container_item add_collection_page_footer_container">
+            <h1 class="logo add_collection_page_footer_item">Clip-It</h1>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

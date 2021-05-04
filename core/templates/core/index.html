@@ -34,13 +34,22 @@
                         Collections
                     </h3>
 
-                    <i class="fas fa-plus add_collections add" onclick="location.href='collections.html'"></i>
+                    <i class="fas fa-plus add_collections add" onclick="location.href='{% url 'create_collection' %}'"></i>
 
                 </div>
 
                 <div class=" collections_content_container collections_item">
+                  {% for item in collections %}
+                    <div class="collections_content_item">
 
-                    <div class="collection_01 collections_content_item">
+                      <a href="#">{{ item.name }}</a>
+                      <i class="far fa-edit edit_collection edit" onclick="location.href='{% url 'edit_collection' collection_id=item.id %}'"></i>
+                      <i data-id="{{ item.id }}" class="far fa-trash-alt delete_collection_01 delete_collection delete" onclick="location.href='{% url 'delete_collection' collection_id=item.id %}'"></i>
+
+                    </div>
+                  {% endfor %}
+
+                    <!-- <div class="collection_01 collections_content_item">
 
                         <a href="#">Social Media</a>
                         <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
@@ -78,7 +87,7 @@
                         <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
                         <i class="far fa-trash-alt delete_collection_05 delete_collection delete"></i>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -94,13 +103,20 @@
 
                     <h3 class="tags_heading"><i class="fas fa-tag tag_icon"></i>
                         Tags</h3>
-                    <i class="fas fa-plus add_tags add" onclick=" location.href='tags.html'"></i>
+                    <i class="fas fa-plus add_tags add" onclick=" location.href='#'"></i>
 
                 </div>
 
                 <div class=" tags_content_container tags_item">
+                  {% for bookmark in bookmarks %}
+                    <div class="tags_content_item">
+                      <a href="#">#{{ bookmark.tags }}</a>
+                      <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
+                      <i class="far fa-trash-alt delete_tag_01 delete_tag delete"></i>
+                    </div>
+                  {% endfor %}
 
-                    <div class="tag_01 tags_content_item">
+                    <!-- <div class="tag_01 tags_content_item">
 
                         <a href="#">#daily use</a>
                         <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
@@ -122,7 +138,7 @@
                         <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
                         <i class="far fa-trash-alt delete_tag_03 delete_tag delete"></i>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
