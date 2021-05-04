@@ -1,0 +1,115 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  background-color: hsl(26, 21%, 94%);
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Root Container */
+
+.root_container{
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Child Items */
+
+  /* Header */
+
+.add_profile_page_header{
+  flex: 1 1 20%;
+}
+
+.add_profile_page_heading{
+  margin-top: 40%;
+  font-size: 2rem;
+  color: hsl(214, 41%, 35%);
+}
+
+  /* Main */
+
+.add_profile_page_content_container{
+  flex: 1 1 60%;
+  width: 30vw;
+  border: 5px solid hsl(214, 41%, 35%);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.profile_user_name_container{
+  padding: 1rem;
+  margin-top: 50px;
+}
+
+.profile_user_name_label{
+  color: hsl(214, 41%, 35%);
+  font-size: 1.1rem;
+  font-weight: 300;
+  display: inline-block;
+}
+
+.profile_user_name{
+  color: hsl(214, 41%, 35%);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.profile_email_container{
+  padding: 1rem;
+  margin-bottom: 50px;
+}
+
+.profile_email_label{
+  display: block;
+  color: hsl(214, 41%, 35%);
+  font-size: 1.1rem;
+  font-weight: 300;
+  display: inline-block;
+}
+
+.profile_email{
+  color: hsl(214, 41%, 35%);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.return_home_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.return_home_container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.return_home{
+  color: hsl(214, 41%, 35%);
+  text-decoration: none;
+}
+
+  /* Footer */
+
+.add_profile_page_footer_container{
+  flex: 1 1 20%;
+}
+
+.logo{
+  color: hsl(201, 100%, 40%); 
+  font-size: 2.5rem;   
+  font-family: 'Exo 2', sans-serif_label;
+}

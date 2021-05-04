@@ -7,8 +7,7 @@ from django.shortcuts import render
 
 
 def index_view(request):
-    context = {'user': request.user}
-    return render(request, 'core/index.html', context)
+    return render(request, 'core/index.html')
 
 
 def login_view(request):
@@ -61,3 +60,7 @@ def register_view(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "core/register.html")
+
+
+def profile_view(request):
+    return render(request, 'core/profile.html')
