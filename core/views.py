@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from . models import Bookmark, Collection, Tag
+from . models import Bookmark, Collection, Shortcut, Tag
 
 
 @login_required
@@ -13,9 +13,11 @@ def index_view(request):
     user = request.user
     collections = Collection.objects.filter(owner=user)
     bookmarks = Bookmark.objects.filter(owner=user)
+    shortcuts = Shortcut.objects.filter(owner=user)
     return render(request, 'core/index.html', {
         'bookmarks': bookmarks,
-        'collections': collections
+        'collections': collections,
+        'shortcuts': shortcuts
     })
 
 
@@ -117,3 +119,36 @@ def delete_collection(request, collection_id):
     if request.method == 'POST':
         collection.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def create_shortcut_view(request):
+    if request.method == 'POST':
+        title = request.POST['shortcut_name']
+        url = request.POST['shortcut_url']
+        if not title or not url:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        user = request.user
+        shortcut = Shortcut.objects.create(title=title, url=url, owner=user)
+        shortcut.save()
+        return redirect('index')
+    return render(request, 'core/create_shortcut.html')
+
+
+def edit_shortcut_view(request, shortcut_id):
+    try:
+        shortcut = Shortcut.objects.get(
+            owner=request.user, pk=shortcut_id)
+        context = {'shortcut': shortcut}
+    except Shortcut.DoesNotExist:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+    if request.method == 'POST':
+        title = request.POST['shortcut_name']
+        url = request.POST['shortcut_url']
+        shortcut.title = title
+        shortcut.url = url
+        shortcut.save()
+
+        return redirect('index')
+    return render(request, 'core/create_shortcut.html', context)

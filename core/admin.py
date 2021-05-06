@@ -5,3 +5,4 @@ from . import models
 admin.site.register(models.Tag)
 admin.site.register(models.Collection)
 admin.site.register(models.Bookmark)
+admin.site.register(models.Shortcut)

@@ -217,55 +217,19 @@
             <div class="shortcut_header_container shortcut_item">
                 <h2> <i class="fas fa-layer-group"></i> Shortcuts</h2>
 
-                <i class="fas fa-plus add_shortcut add" onclick="location.href='shortcuts.html'"></i>
+                <i class="fas fa-plus add_shortcut add" onclick="location.href='{% url 'create_shortcut' %}'"></i>
             </div>
 
             <div class="shortcut_content_container shortcut_item">
-
-                <div class="shortcut_01 shortcut_content_item">
-
-                    <a href="#">YouTube</a>
-                    <div class="shortcut_content_item_editable">
-                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_shortcut_01 delete_url delete"></i>
+                {% for shortcut in shortcuts %}
+                    <div class="shortcut_content_item">
+                        <a href="{{ shortcut.url }}" target="_blank">{{ shortcut.title }}</a>
+                        <div class="shortcut_content_item_editable">
+                            <i class="far fa-edit edit_shortcut_01 edit_url edit" onclick="location.href='{% url 'edit_shortcut' shortcut_id=shortcut.id %}'"></i>
+                            <i class="far fa-trash-alt delete_shortcut_01 delete_url delete"></i>
+                        </div>
                     </div>
-                </div>
-
-                <div class="shortcut_02 shortcut_content_item">
-
-                    <a href="#">CUIMS</a>
-                    <div class="shortcut_content_item_editable">
-                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_shortcut_02 delete_url delete"></i>
-                    </div>
-                </div>
-
-                <div class="shortcut_03 shortcut_content_item">
-
-                    <a href="#">MDN</a>
-                    <div class="shortcut_content_item_editable">
-                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_shortcut_03 delete_url delete"></i>
-                    </div>
-                </div>
-
-                <div class="shortcut_04 shortcut_content_item">
-
-                    <a href="#">Netflix</a>
-                    <div class="shortcut_content_item_editable">
-                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_shortcut_04 delete_url delete"></i>
-                    </div>
-                </div>
-
-                <div class="shortcut_05 shortcut_content_item">
-
-                    <a href="#">Black Board</a>
-                    <div class="shortcut_content_item_editable">
-                        <i class="far fa-edit edit_shortcut_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_shortcut_05 delete_url delete"></i>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
 
@@ -277,6 +241,9 @@
 
     </div>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'core/js/index.js' %}"></script>
 </body>
 
 </html>

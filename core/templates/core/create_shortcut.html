@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&family=Raleway:wght@300;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/540bcb909b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'core/css/shortcuts.css' %}">
+
+    <title>Clip-It: Shortcuts</title>
+</head>
+
+<body>
+
+    <!-- Root Container -->
+
+    <div class="root_container">
+
+        <!-- Header + Main + Footer -->
+
+        <!-- Header/Heading -->
+
+        <header class="root_container_item add_shortcut_page_header">
+
+            <h1 class="add_shortcut_page_heading"><i class="fas fa-layer-group"></i> Shortcuts</h2>
+
+        </header>
+
+        <!-- Main/Content -->
+
+        <main class="root_container_item add_shortcut_page_content_container">
+            <form class="add_shortcut_page_content_item add_shortcut_form_container" method="POST" action="{% url 'create_shortcut' %}">
+              {% csrf_token %}
+                <div class="add_shortcut_form_item shortcut_name_entry_container">
+
+                    <label class="shortcut_name_entry_item shortcut_name_label">Shortcut Name :</label>
+
+                    <input class="shortcut_name_entry_item shortcut_name_input" type="text" name="shortcut_name"
+                        required value="{{ shortcut.title }}">
+
+                </div>
+
+                <div class="add_shortcut_form_item shortcut_entry_container">
+
+                    <label class="shortcut_entry_item shortcut_label"><i class="fas fa-link shortcut_icon"></i> Shortcut
+                        Link
+                        :</label>
+
+                    <input class="shortcut_entry_item shortcut_input" type="text" name="shortcut_url" required value="{{ shortcut.url }}">
+
+                </div>
+
+                <div class="return_home_container">
+
+                    <button type="submit" class="add_shortcut_form_content_item add_shortcut"><i
+                            class="fas fa-plus add_shortcuts add"></i></button>
+
+                </div>
+
+            </form>
+
+
+            <div class="return_home_container">
+
+                <a href="app.html" class="add_shortcut_page_item return_home"><i
+                        class="fas fa-arrow-left return_home_icon return"></i> Back to
+                    party!</a>
+
+            </div>
+
+
+        </main>
+
+        <!-- Footer/Logo -->
+
+        <footer class="root_container_item add_shortcut_page_footer_container">
+            <h1 class="logo add_shortcut_page_footer_item">Clip-It</h1>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

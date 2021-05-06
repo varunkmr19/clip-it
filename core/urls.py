@@ -12,5 +12,9 @@ urlpatterns = [
     path('login', views.login_view, name='login'),
     path('logout', views.logout_view, name='logout'),
     path('profile', views.profile_view, name='profile'),
-    path('register', views.register_view, name='register')
+    path('register', views.register_view, name='register'),
+
+    path('shortcut/create', views.create_shortcut_view, name='create_shortcut'),
+    path('shortcut/edit/<int:shortcut_id>',
+         views.edit_shortcut_view, name='edit_shortcut')
 ]
