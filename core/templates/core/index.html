@@ -44,7 +44,7 @@
 
                       <a href="#">{{ item.name }}</a>
                       <i class="far fa-edit edit_collection edit" onclick="location.href='{% url 'edit_collection' collection_id=item.id %}'"></i>
-                      <i data-id="{{ item.id }}" class="far fa-trash-alt delete_collection_01 delete_collection delete" onclick="location.href='{% url 'delete_collection' collection_id=item.id %}'"></i>
+                      <i data-id="{{ item.id }}" class="far fa-trash-alt delete_collection_01 delete_collection delete" onclick="location.href='{% url 'delete_collection' pk=item.id %}'"></i>
 
                     </div>
                   {% endfor %}
@@ -226,7 +226,7 @@
                         <a href="{{ shortcut.url }}" target="_blank">{{ shortcut.title }}</a>
                         <div class="shortcut_content_item_editable">
                             <i class="far fa-edit edit_shortcut_01 edit_url edit" onclick="location.href='{% url 'edit_shortcut' shortcut_id=shortcut.id %}'"></i>
-                            <i class="far fa-trash-alt delete_shortcut_01 delete_url delete"></i>
+                            <i class="far fa-trash-alt delete_shortcut_01 delete_url delete" onclick="location.href='{% url 'delete_shortcut' pk=shortcut.id %}'"></i>
                         </div>
                     </div>
                 {% endfor %}

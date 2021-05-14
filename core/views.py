@@ -1,3 +1,4 @@
+from django.views.generic.edit import DeleteView
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.contrib.auth.models import User
@@ -8,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 from . models import Bookmark, Collection, Shortcut, Tag
 
 
-@login_required
 def index_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     user = request.user
     collections = Collection.objects.filter(owner=user)
     bookmarks = Bookmark.objects.filter(owner=user)
@@ -109,16 +111,9 @@ def edit_collection_view(request, collection_id):
     return render(request, 'core/edit_collection.html', context)
 
 
-@login_required
-def delete_collection(request, collection_id):
-    try:
-        collection = Collection.objects.get(
-            owner=request.user, pk=collection_id)
-    except Collection.DoesNotExist:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-    if request.method == 'POST':
-        collection.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+class CollectionDeleteView(DeleteView):
+    model = Collection
+    success_url = "/"
 
 
 @login_required
@@ -151,4 +146,9 @@ def edit_shortcut_view(request, shortcut_id):
         shortcut.save()
 
         return redirect('index')
-    return render(request, 'core/create_shortcut.html', context)
+    return render(request, 'core/edit_shortcut.html', context)
+
+
+class ShortcutDeleteView(DeleteView):
+    model = Shortcut
+    success_url = "/"
