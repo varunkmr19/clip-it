@@ -18,5 +18,8 @@ urlpatterns = [
     path('shortcut/edit/<int:shortcut_id>',
          views.edit_shortcut_view, name='edit_shortcut'),
     path('shortcut/<pk>/delete',
-         views.ShortcutDeleteView.as_view(), name='delete_shortcut')
+         views.ShortcutDeleteView.as_view(), name='delete_shortcut'),
+
+    path('bookmark/<int:collection_id>',
+         views.load_bookmarks, name='load_bookmarks')
 ]

@@ -1,3 +1,4 @@
+from django import shortcuts
 from django.views.generic.edit import DeleteView
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
@@ -152,3 +153,27 @@ def edit_shortcut_view(request, shortcut_id):
 class ShortcutDeleteView(DeleteView):
     model = Shortcut
     success_url = "/"
+
+
+def load_bookmarks(request, collection_id):
+    try:
+        collection = Collection.objects.get(
+            pk=collection_id, owner=request.user)
+        collection_name = collection.name
+        shortcuts = Shortcut.objects.filter(owner=request.user)
+        collections = Collection.objects.filter(owner=request.user)
+        bookmarks = Bookmark.objects.filter(
+            owner=request.user, collection=collection)
+        context = {
+            'bookmarks': bookmarks,
+            'collection_name': collection_name,
+            'collections': collections,
+            'shortcuts': shortcuts
+        }
+        return render(request, 'core/index.html', context)
+    except Collection.DoesNotExist:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def create_bookmark(request):
+    pass

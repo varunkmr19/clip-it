@@ -34,66 +34,25 @@
                         Collections
                     </h3>
 
-                    <i class="fas fa-plus add_collections add" onclick="location.href='{% url 'create_collection' %}'"></i>
+                    <i class="fas fa-plus add_collections add"
+                        onclick="location.href='{% url 'create_collection' %}'"></i>
 
                 </div>
-
                 <div class=" collections_content_container collections_item">
-                  {% for item in collections %}
-                    <div class="collections_content_item">
+                    {% for item in collections %}
+                    <div class="collections_content_item" id="{{ item.id }}">
 
-                      <a href="#">{{ item.name }}</a>
-                      <i class="far fa-edit edit_collection edit" onclick="location.href='{% url 'edit_collection' collection_id=item.id %}'"></i>
-                      <i data-id="{{ item.id }}" class="far fa-trash-alt delete_collection_01 delete_collection delete" onclick="location.href='{% url 'delete_collection' pk=item.id %}'"></i>
-
-                    </div>
-                  {% endfor %}
-
-                    <!-- <div class="collection_01 collections_content_item">
-
-                        <a href="#">Social Media</a>
-                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
-                        <i class="far fa-trash-alt delete_collection_01 delete_collection delete"></i>
+                        <a href="{% url 'load_bookmarks' collection_id=item.id %}">{{ item.name }}</a>
+                        <i class="far fa-edit edit_collection edit"
+                            onclick="location.href='{% url 'edit_collection' collection_id=item.id %}'"></i>
+                        <i data-id="{{ item.id }}"
+                            class="far fa-trash-alt delete_collection_01 delete_collection delete"
+                            onclick="location.href='{% url 'delete_collection' pk=item.id %}'"></i>
 
                     </div>
-
-                    <div class="collection_02 collections_content_item">
-
-                        <a href="#">Podcasts</a>
-                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
-                        <i class="far fa-trash-alt delete_collection_02 delete_collection delete"></i>
-
-                    </div>
-
-                    <div class="collection_03 collections_content_item">
-
-                        <a href="#">Official</a>
-                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
-                        <i class="far fa-trash-alt delete_collection_03 delete_collection delete"></i>
-
-                    </div>
-
-                    <div class="collection_04 collections_content_item">
-
-                        <a href="#">Shopping</a>
-                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
-                        <i class="far fa-trash-alt delete_collection_04 delete_collection delete"></i>
-
-                    </div>
-
-                    <div class="collection_05 collections_content_item">
-
-                        <a href="#">Utilities</a>
-                        <i class="far fa-edit edit_collection_01 edit_collection edit"></i>
-                        <i class="far fa-trash-alt delete_collection_05 delete_collection delete"></i>
-
-                    </div> -->
-
+                    {% endfor %}
                 </div>
-
             </section>
-
-
 
             <!-- Tags: Section for Bookmark Tags -->
             <section class="tags_container sidebar_item">
@@ -108,40 +67,14 @@
                 </div>
 
                 <div class=" tags_content_container tags_item">
-                  {% for bookmark in bookmarks %}
+                    <!-- 
                     <div class="tags_content_item">
-                      <a href="#">#{{ bookmark.tags }}</a>
-                      <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
-                      <i class="far fa-trash-alt delete_tag_01 delete_tag delete"></i>
-                    </div>
-                  {% endfor %}
-
-                    <!-- <div class="tag_01 tags_content_item">
-
-                        <a href="#">#daily use</a>
+                        <a href="#">#</a>
                         <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
                         <i class="far fa-trash-alt delete_tag_01 delete_tag delete"></i>
-
                     </div>
-
-                    <div class="tag_02 tags_content_item">
-
-                        <a href="#">#JRE</a>
-                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
-                        <i class="far fa-trash-alt delete_tag_02 delete_tag delete"></i>
-
-                    </div>
-
-                    <div class="tag_03 tags_content_item">
-
-                        <a href="#">#Google Util</a>
-                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
-                        <i class="far fa-trash-alt delete_tag_03 delete_tag delete"></i>
-
-                    </div> -->
-
+                    -->
                 </div>
-
             </section>
 
             <!-- Menu: Sections for Profile + Upload + Sign Out -->
@@ -171,39 +104,27 @@
         <main class="url_container">
 
             <section class="url_header_container url_item">
-
+                {% if collection.name %}
+                <h1>{{ collection.name }}</h1>
+                {% else %}
                 <h1>Google Util</h1>
+                {% endif %}
 
             </section>
 
             <section class="url_content_container url_item">
-
+                {% for bookmark in bookmarks %}
                 <div class="url_01 url_content_item">
 
-                    <a href="#">Google Mail</a>
+                    <a href="{{ bookmark.url }}">{{ bookmark.title }}</a>
                     <div class="url_content_item_editable">
                         <i class="far fa-edit edit_url_01 edit_url edit"></i>
                         <i class="far fa-trash-alt delete_url_01 delete_url delete"></i>
                     </div>
                 </div>
-
-                <div class="url_02 url_content_item">
-
-                    <a href="#">Google Drive</a>
-                    <div class="url_content_item_editable">
-                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_url_02 delete_url delete"></i>
-                    </div>
-                </div>
-
-                <div class="url_03 url_content_item">
-
-                    <a href="#">Google Keep</a>
-                    <div class="url_content_item_editable">
-                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_url_03 delete_url delete"></i>
-                    </div>
-                </div>
+                {% empty %}
+                <h1>Collection is Empty. Add bookmarks to continue.</h1>
+                {% endfor %}
 
                 <i class="fas fa-plus add_url" onclick="location.href='urls.html'"></i>
 
@@ -222,13 +143,15 @@
 
             <div class="shortcut_content_container shortcut_item">
                 {% for shortcut in shortcuts %}
-                    <div class="shortcut_content_item">
-                        <a href="{{ shortcut.url }}" target="_blank">{{ shortcut.title }}</a>
-                        <div class="shortcut_content_item_editable">
-                            <i class="far fa-edit edit_shortcut_01 edit_url edit" onclick="location.href='{% url 'edit_shortcut' shortcut_id=shortcut.id %}'"></i>
-                            <i class="far fa-trash-alt delete_shortcut_01 delete_url delete" onclick="location.href='{% url 'delete_shortcut' pk=shortcut.id %}'"></i>
-                        </div>
+                <div class="shortcut_content_item">
+                    <a href="{{ shortcut.url }}" target="_blank">{{ shortcut.title }}</a>
+                    <div class="shortcut_content_item_editable">
+                        <i class="far fa-edit edit_shortcut_01 edit_url edit"
+                            onclick="location.href='{% url 'edit_shortcut' shortcut_id=shortcut.id %}'"></i>
+                        <i class="far fa-trash-alt delete_shortcut_01 delete_url delete"
+                            onclick="location.href='{% url 'delete_shortcut' pk=shortcut.id %}'"></i>
                     </div>
+                </div>
                 {% endfor %}
 
             </div>
@@ -242,7 +165,8 @@
     </div>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="{% static 'core/js/index.js' %}"></script>
 </body>
 
