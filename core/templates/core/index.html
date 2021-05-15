@@ -56,25 +56,6 @@
 
             <!-- Tags: Section for Bookmark Tags -->
             <section class="tags_container sidebar_item">
-
-                <div class="tags_header_container tags_item">
-
-
-                    <h3 class="tags_heading"><i class="fas fa-tag tag_icon"></i>
-                        Tags</h3>
-                    <i class="fas fa-plus add_tags add" onclick=" location.href='#'"></i>
-
-                </div>
-
-                <div class=" tags_content_container tags_item">
-                    <!-- 
-                    <div class="tags_content_item">
-                        <a href="#">#</a>
-                        <i class="far fa-edit edit_tag_01 edit_tag edit"></i>
-                        <i class="far fa-trash-alt delete_tag_01 delete_tag delete"></i>
-                    </div>
-                    -->
-                </div>
             </section>
 
             <!-- Menu: Sections for Profile + Upload + Sign Out -->
@@ -104,10 +85,10 @@
         <main class="url_container">
 
             <section class="url_header_container url_item">
-                {% if collection.name %}
-                <h1>{{ collection.name }}</h1>
+                {% if collection_name %}
+                <h1>{{ collection_name }}</h1>
                 {% else %}
-                <h1>Google Util</h1>
+                <h1>All Bookmarks</h1>
                 {% endif %}
 
             </section>
@@ -116,7 +97,7 @@
                 {% for bookmark in bookmarks %}
                 <div class="url_01 url_content_item">
 
-                    <a href="{{ bookmark.url }}">{{ bookmark.title }}</a>
+                    <a href="{{ bookmark.url }}" target="_blank">{{ bookmark.title }}</a>
                     <div class="url_content_item_editable">
                         <i class="far fa-edit edit_url_01 edit_url edit"
                             onclick="location.href='{% url 'edit_bookmark' bookmark_id=bookmark.id %}'"></i>

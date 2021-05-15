@@ -91,7 +91,7 @@ def create_collection_view(request):
         user = request.user
         collection = Collection.objects.create(name=name, owner=user)
         collection.save()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect('index')
     return render(request, 'core/create_collection.html')
 
 
@@ -168,7 +168,8 @@ def load_bookmarks(request, collection_id):
             'bookmarks': bookmarks,
             'collection_name': collection_name,
             'collections': collections,
-            'shortcuts': shortcuts
+            'shortcuts': shortcuts,
+            'collection_name': collection_name
         }
         return render(request, 'core/index.html', context)
     except Collection.DoesNotExist:
