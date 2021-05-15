@@ -21,5 +21,10 @@ urlpatterns = [
          views.ShortcutDeleteView.as_view(), name='delete_shortcut'),
 
     path('bookmark/<int:collection_id>',
-         views.load_bookmarks, name='load_bookmarks')
+         views.load_bookmarks, name='load_bookmarks'),
+    path('bookmark/create', views.create_bookmark_view, name='create_bookmark'),
+    path('bookmark/edit/<int:bookmark_id>',
+         views.edit_bookmark_view, name='edit_bookmark'),
+    path('bookmark/<pk>/delete',
+         views.BookmarkDeleteView.as_view(), name='delete_bookmark')
 ]

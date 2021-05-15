@@ -5,7 +5,7 @@ from django.db import IntegrityError
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from . models import Bookmark, Collection, Shortcut, Tag
 
@@ -175,5 +175,48 @@ def load_bookmarks(request, collection_id):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-def create_bookmark(request):
-    pass
+def create_bookmark_view(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        url = request.POST['url']
+        if not title or not url:
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        collection = get_object_or_404(
+            Collection, pk=request.POST.get('collection_id'))
+        user = request.user
+        bookmark = Bookmark.objects.create(
+            title=title, url=url, owner=user)
+        bookmark.save()
+        bookmark.collection.add(collection)
+        return redirect('index')
+    collection = Collection.objects.filter(owner=request.user)
+    context = {'collections': collection}
+    return render(request, 'core/create_bookmark.html', context)
+
+
+def edit_bookmark_view(request, bookmark_id):
+    try:
+        bookmark = Bookmark.objects.get(
+            owner=request.user, pk=bookmark_id)
+        collections = Collection.objects.filter(owner=request.user)
+        context = {'bookmark': bookmark, 'collections': collections}
+    except Bookmark.DoesNotExist:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        url = request.POST['url']
+        collection = get_object_or_404(
+            Collection, pk=request.POST.get('collection_id'))
+        bookmark.title = title
+        bookmark.url = url
+        bookmark.collection.add(collection)
+        bookmark.save()
+
+        return redirect('index')
+    return render(request, 'core/edit_bookmark.html', context)
+
+
+class BookmarkDeleteView(DeleteView):
+    model = Bookmark
+    success_url = "/"

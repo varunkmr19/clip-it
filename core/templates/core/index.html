@@ -118,15 +118,17 @@
 
                     <a href="{{ bookmark.url }}">{{ bookmark.title }}</a>
                     <div class="url_content_item_editable">
-                        <i class="far fa-edit edit_url_01 edit_url edit"></i>
-                        <i class="far fa-trash-alt delete_url_01 delete_url delete"></i>
+                        <i class="far fa-edit edit_url_01 edit_url edit"
+                            onclick="location.href='{% url 'edit_bookmark' bookmark_id=bookmark.id %}'"></i>
+                        <i class="far fa-trash-alt delete_url_01 delete_url delete"
+                            onclick="location.href='{% url 'delete_bookmark' pk=bookmark.id %}'"></i>
                     </div>
                 </div>
                 {% empty %}
                 <h1>Collection is Empty. Add bookmarks to continue.</h1>
                 {% endfor %}
 
-                <i class="fas fa-plus add_url" onclick="location.href='urls.html'"></i>
+                <i class="fas fa-plus add_url" onclick="location.href='{% url 'create_bookmark' %}'"></i>
 
             </section>
 
